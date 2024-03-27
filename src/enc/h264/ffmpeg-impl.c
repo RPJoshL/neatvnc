@@ -319,9 +319,11 @@ static int h264_encoder__init_codec_context(struct h264_encoder_ffmpeg* self,
 	c->global_quality = quality;
 
 	/* open-h264 requires baseline profile, so we use constrained
-	 * baseline.
+	 * baseline: AV_PROFILE_H264_BASELINE.
+	 * But that is not supported by many clients. So we use a "DEFAULT" profile.
+	 * 
 	 */
-	c->profile = 578;
+	c->profile = AV_PROFILE_H264_MAIN;
 
 	// Encode BT.709 into the bitstream:
 	c->colorspace = AVCOL_SPC_BT709;
