@@ -209,7 +209,7 @@ static int h264_encoder__init_buffersrc(struct h264_encoder_ffmpeg* self)
 	 */
 	rc = avfilter_graph_create_filter(&self->filter_in,
 			avfilter_get_by_name("buffer"), "in",
-			"width=1:height=1:pix_fmt=drm_prime:time_base=1/1", NULL,
+			"width=1:height=1:pix_fmt=nv12:time_base=1/1", NULL,
 			self->filter_graph);
 	if (rc != 0)
 		return -1;
