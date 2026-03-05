@@ -283,7 +283,7 @@ static int h264_encoder__init_filters(struct h264_encoder_ffmpeg* self)
 			"hwmap=mode=direct:derive_device=vaapi"
 			",scale_vaapi=format=nv12:mode=fast"
 			":out_color_matrix=bt709:out_range=limited"
-			":out_color_primaries=bt709:out_color_transfer=bt709",
+			":out_color_primaries=bt709:out_color_transfer=iec61966-2-1",
 			outputs, inputs, NULL);
 	if (rc != 0)
 		goto failure;
