@@ -900,6 +900,10 @@ static int on_client_set_encodings(struct nvnc_client* client)
 	if (client_has_encoding(client, RFB_ENCODING_FENCE))
 		send_ping(client, 0);
 
+	nvnc_client_fn fn = client->server->client_encodings_fn;
+	if (fn)
+		fn(client);
+
 	return sizeof(*msg) + 4 * n_encodings;
 }
 
@@ -3121,6 +3125,12 @@ EXPORT
 void nvnc_set_new_client_fn(struct nvnc* self, nvnc_client_fn fn)
 {
 	self->new_client_fn = fn;
+}
+
+EXPORT
+void nvnc_set_client_encodings_fn(struct nvnc* self, nvnc_client_fn fn)
+{
+	self->client_encodings_fn = fn;
 }
 
 EXPORT
